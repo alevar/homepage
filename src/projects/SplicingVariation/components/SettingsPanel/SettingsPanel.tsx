@@ -8,6 +8,10 @@ interface SettingsPanelProps {
     donorsStatus: number;
     acceptorsStatus: number;
     onBEDUpload: (type: 'donors' | 'acceptors', event: React.ChangeEvent<HTMLInputElement>) => void;
+    zoomWidth: number;
+    onZoomWidthChange: (value: number) => void;
+    zoomWindowWidth: number;
+    onZoomWindowWidthChange: (value: number) => void;
     fontSize: number;
     onFontSizeChange: (value: number) => void;
     width: number;
@@ -22,6 +26,10 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
     donorsStatus,
     acceptorsStatus,
     onBEDUpload,
+    zoomWidth,
+    onZoomWidthChange,
+    zoomWindowWidth,
+    onZoomWindowWidthChange,
     fontSize,
     onFontSizeChange,
     width,
@@ -58,6 +66,22 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
                             {acceptorsStatus === -1 && (
                                 <div className="text-danger">Error parsing acceptors file</div>
                             )}
+                        </Form.Group>
+
+                        <Form.Group controlId="zoomWidth">
+                            <Form.Label>Zoom Width</Form.Label>
+                            <Form.Control 
+                                type="number" 
+                                value={zoomWidth}
+                                onChange={(e) => onZoomWidthChange(Number(e.target.value))}/>
+                        </Form.Group>
+
+                        <Form.Group controlId="zoomWindowWidth">
+                            <Form.Label>Zoom Window Width</Form.Label>
+                            <Form.Control 
+                                type="number" 
+                                value={zoomWindowWidth}
+                                onChange={(e) => onZoomWindowWidthChange(Number(e.target.value))}/>
                         </Form.Group>
 
                         {/* Font Size */}

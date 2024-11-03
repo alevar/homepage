@@ -118,7 +118,7 @@ export class DataPlotArray {
         // create background grid with horizontal lines based on the max value
         this.yScale = d3.scaleLinear()
             .domain([0, this.maxValue])
-            .range([0,this.dimensions.height]);
+            .range([this.dimensions.height, 0]);
         
         // Add a background rectangle for the grid
         this.svg.append("rect")
@@ -173,9 +173,6 @@ export class DataPlotArray {
 
     // compute corresponding x-axis positions for the element
     public getElementMapping(index: number): [[number,number],[number,number]] {
-        console.log(this.elements);
-        console.log(this.raw_xs);
-        console.log(this.spread_elements);
         return [this.raw_xs[index],this.spread_elements[index]];
     }
 }

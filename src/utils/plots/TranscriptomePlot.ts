@@ -46,18 +46,17 @@ export class TranscriptomePlot {
 
     public plot(): any[] {
         let tx_idx = 0;
-        let y_pos = 0;
         for (const [gene_id, transcripts] of this.transcriptome.genes()) {
+            // pull coordinates of first transcript in the group
+            const svg_coordinates = this.grid.getCellCoordinates(0, tx_idx);
+            const y_pos = svg_coordinates?.y || 0;
             this.genes.push({ "name": gene_id, "y": [y_pos, y_pos + transcripts.length * this.transcript_height] });
             for (const transcript of transcripts) {
                 const txPlotSvg = this.grid.getCellSvg(0, tx_idx);
-                tx_idx += 1;
 
                 if (txPlotSvg) {
                     const svg_dimensions = this.grid.getCellDimensions(0, tx_idx);
                     const svg_coordinates = this.grid.getCellCoordinates(0, tx_idx);
-
-                    y_pos = svg_coordinates?.y || 0;
 
                     const txPlotDimensions = {
                         width: svg_dimensions?.width || 0,
@@ -74,8 +73,10 @@ export class TranscriptomePlot {
                     });
                     txPlot.plot();
                 }
+                tx_idx += 1;
             }
         }
+        console.log(this.genes);
         return this.genes;
     }
 }

@@ -13,6 +13,10 @@ export function parseBed(bedFileName: File): Promise<BedFile> {
                 const result = e.target?.result as string;
                 const lines = result.split('\n');
                 lines.forEach((line) => {
+                    // skip empty lines
+                    if (line.trim() === '') {
+                        return;
+                    }
                     const fields = line.split('\t');
                     if (fields.length === 6) {
                         const [seqid, start, end, name, score, strand] = fields;

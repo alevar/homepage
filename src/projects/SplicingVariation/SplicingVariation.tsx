@@ -11,6 +11,8 @@ import { BedFile, BedData, Transcriptome } from "../../types/api";
 
 const SplicingVariation: React.FC = () => {
     const [transcriptome, setTranscriptome] = useState<Transcriptome>(new Transcriptome());
+    const [zoomWidth, setZoomWidth] = useState<number>(5);
+    const [zoomWindowWidth, setZoomWindowWidth] = useState<number>(75);
     const [fontSize, setFontSize] = useState<number>(10);
     const [width, setWidth] = useState<number>(1100);
     const [height, setHeight] = useState<number>(700);
@@ -70,6 +72,10 @@ const SplicingVariation: React.FC = () => {
                 donorsStatus={bedFiles.donors.status}
                 acceptorsStatus={bedFiles.acceptors.status}
                 onBEDUpload={handleBedFileUpload}
+                zoomWidth={zoomWidth}
+                onZoomWidthChange={setZoomWidth}
+                zoomWindowWidth={zoomWindowWidth}
+                onZoomWindowWidthChange={setZoomWindowWidth}
                 fontSize={fontSize}
                 onFontSizeChange={setFontSize}
                 width={width}
@@ -82,6 +88,8 @@ const SplicingVariation: React.FC = () => {
                 <SplicePlotWrapper
                     transcriptome={transcriptome}
                     bedFiles={bedFiles}
+                    zoomWidth={zoomWidth}
+                    zoomWindowWidth={zoomWindowWidth}
                     width={width}
                     height={height}
                     fontSize={fontSize}

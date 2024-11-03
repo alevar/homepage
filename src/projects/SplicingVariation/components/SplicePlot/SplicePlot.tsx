@@ -20,6 +20,8 @@ import {
 interface SplicePlotData {
     transcriptome: Transcriptome;
     bedFiles: { donors: BedFile, acceptors: BedFile };
+    zoomWidth: number;
+    zoomWindowWidth: number;
     width: number;
     height: number;
     fontSize: number;
@@ -30,6 +32,8 @@ export class SplicePlot {
     private width: number;
     private height: number;
     private fontSize: number;
+    private zoomWindowWidth: number;
+    private zoomWidth: number;
     private transcriptome: Transcriptome = new Transcriptome();
     private bedFiles: { donors: BedFile; acceptors: BedFile } = {
         donors: {
@@ -61,6 +65,9 @@ export class SplicePlot {
         this.width = data.width;
         this.height = data.height;
         this.fontSize = data.fontSize;
+
+        this.zoomWindowWidth = data.zoomWindowWidth;
+        this.zoomWidth = data.zoomWidth;
 
         this.transcriptome = data.transcriptome;
         this.bedFiles = data.bedFiles;
@@ -218,11 +225,10 @@ export class SplicePlot {
             let donor_maxExpression = 0; // find max expression value
             for (const donor of this.transcriptome.donors()) {
                 donor_positions.push(donor);
-                this.bedFiles.donors.data.getPos(donor).forEach((d) => {
-                    if (d.score > donor_maxExpression) {
-                        donor_maxExpression = d.score;
-                    }
-                });
+                const donor_range = this.bedFiles.donors.data.getRange(donor-this.zoomWidth,donor+this.zoomWidth);
+                if ( donor_range.maxScore() > donor_maxExpression) {
+                    donor_maxExpression = donor_range.maxScore();
+                }
             }
             // sort donor positions
             donor_positions.sort((a, b) => a - b);
@@ -231,11 +237,12 @@ export class SplicePlot {
                 dimensions: donor_dataPlotArrayDimensions,
                 coordinateLength: this.transcriptome.getEnd(),
                 elements: donor_positions,
-                elementWidth: 100,
+                elementWidth: this.zoomWindowWidth,
                 maxValue: donor_maxExpression,
             });
             this.grid.setCellData(0, 5, donor_dataPlotArray);
             donor_dataPlotArray.plot();
+            const donor_dataPlotArray_yScale = donor_dataPlotArray.getYScale();
 
             // create individual plots for each donor site
             for (let i = 0; i < donor_positions.length; i++) {
@@ -264,15 +271,16 @@ export class SplicePlot {
                         .attr("fill-opacity", 0.75);
 
                     // extract data from bed for the current donor
-                    const subBedData = this.bedFiles.donors.data.getRange(donor - 10, donor + 10);
+                    const subBedData = this.bedFiles.donors.data.getRange(donor - this.zoomWidth, donor + this.zoomWidth);
                     const explodedSubBedData = subBedData.explode();
                     const xScale = d3.scaleLinear()
-                        .domain([donor-10, donor+10])
+                        .domain([donor-this.zoomWidth, donor+this.zoomWidth])
                         .range([0, donor_zoomPlotDimensions.width]);
                     const donor_zoomPlot = new LinePlot(donor_zoomPlotSvg, {
                         dimensions: donor_zoomPlotDimensions,
                         bedData: explodedSubBedData,
                         xScale: xScale,
+                        yScale: donor_dataPlotArray_yScale,
                         color: "red"
                     });
                     donor_zoomPlot.plot();
@@ -355,11 +363,10 @@ export class SplicePlot {
             let acceptor_maxExpression = 0; // find max expression value
             for (const acceptor of this.transcriptome.acceptors()) {
                 acceptor_positions.push(acceptor);
-                this.bedFiles.acceptors.data.getPos(acceptor).forEach((d) => {
-                    if (d.score > acceptor_maxExpression) {
-                        acceptor_maxExpression = d.score;
-                    }
-                });
+                const acceptor_range = this.bedFiles.acceptors.data.getRange(acceptor-this.zoomWidth,acceptor+this.zoomWidth);
+                if ( acceptor_range.maxScore() > acceptor_maxExpression) {
+                    acceptor_maxExpression = acceptor_range.maxScore();
+                }
             }
             // sort acceptor positions
             acceptor_positions.sort((a, b) => a - b);
@@ -368,11 +375,12 @@ export class SplicePlot {
                 dimensions: acceptor_dataPlotArrayDimensions,
                 coordinateLength: this.transcriptome.getEnd(),
                 elements: acceptor_positions,
-                elementWidth: 100,
+                elementWidth: this.zoomWindowWidth,
                 maxValue: acceptor_maxExpression,
             });
             this.grid.setCellData(0, 9, acceptor_dataPlotArray);
             acceptor_dataPlotArray.plot();
+            const acceptor_dataPlotArray_yScale = acceptor_dataPlotArray.getYScale();
 
             // create individual plots for each acceptor site
             for (let i = 0; i < acceptor_positions.length; i++) {
@@ -401,15 +409,16 @@ export class SplicePlot {
                         .attr("fill-opacity", 0.75);
 
                     // extract data from bed for the current acceptors
-                    const subBedData = this.bedFiles.acceptors.data.getRange(acceptor - 10, acceptor + 10);
+                    const subBedData = this.bedFiles.acceptors.data.getRange(acceptor - this.zoomWidth, acceptor + this.zoomWidth);
                     const explodedSubBedData = subBedData.explode();
                     const xScale = d3.scaleLinear()
-                        .domain([acceptor-10, acceptor+10])
+                        .domain([acceptor-this.zoomWidth, acceptor+this.zoomWidth])
                         .range([0, acceptor_zoomPlotDimensions.width]);
                     const acceptor_zoomPlot = new LinePlot(acceptor_zoomPlotSvg, {
                         dimensions: acceptor_zoomPlotDimensions,
                         bedData: explodedSubBedData,
                         xScale: xScale,
+                        yScale: acceptor_dataPlotArray_yScale,
                         color: "green"
                     });
                     acceptor_zoomPlot.plot();

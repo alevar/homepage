@@ -7,12 +7,22 @@ import { SplicePlot } from './SplicePlot';
 interface SplicePlotWrapperProps {
     transcriptome: Transcriptome;
     bedFiles: {donors: BedFile, acceptors: BedFile};
+    zoomWidth: number;
+    zoomWindowWidth: number;
     width: number;
     height: number;
     fontSize: number;
 }
 
-const SplicePlotWrapper: React.FC<SplicePlotWrapperProps> = ({ transcriptome, bedFiles, width, height, fontSize }) => {
+const SplicePlotWrapper: React.FC<SplicePlotWrapperProps> = ({ 
+    transcriptome, 
+    bedFiles, 
+    zoomWidth, 
+    zoomWindowWidth,
+    width, 
+    height, 
+    fontSize 
+}) => {
     const svgRef = useRef<SVGSVGElement | null>(null);
 
     const handleDownload = () => {
@@ -37,9 +47,16 @@ const SplicePlotWrapper: React.FC<SplicePlotWrapperProps> = ({ transcriptome, be
         const svg = d3.select(svgRef.current);
         svg.selectAll("*").remove();
         
-        const splicePlot = new SplicePlot(svg, { transcriptome, bedFiles, width, height, fontSize });
+        const splicePlot = new SplicePlot(svg, { 
+            transcriptome, 
+            bedFiles, 
+            zoomWidth, 
+            zoomWindowWidth,
+            width, 
+            height, 
+            fontSize });
         splicePlot.plot();
-    }, [transcriptome, bedFiles, width, height, fontSize]);
+    }, [transcriptome, bedFiles, zoomWidth, zoomWindowWidth, width, height, fontSize]);
 
     return (
         <div>
