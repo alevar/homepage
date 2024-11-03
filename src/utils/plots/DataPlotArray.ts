@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 
-import { Dimensions, BedData, D3Grid, GridConfig, Interval } from '../../types/api';
-import { adjustIntervals } from '../utils';
+import { Dimensions, D3Grid, GridConfig, Interval } from '../../types/api';
+import { adjustIntervals, computeMidpoint } from '../utils';
 
 interface DataPlotArrayData {
     svg: d3.Selection<SVGSVGElement, unknown, null, undefined>;
@@ -31,11 +31,9 @@ export class DataPlotArray {
     private element_indices: number[]; // indices of the elements in the grid
 
     private gridConfig: GridConfig = {
-        columns: 1,
-        columnRatios: [1],
-        rowRatiosPerColumn: [
-            [1],
-        ],
+        columns: 0,
+        columnRatios: [],
+        rowRatiosPerColumn: [],
     };
     private grid: D3Grid;
 
@@ -57,6 +55,12 @@ export class DataPlotArray {
         
         // setup the grid based on the coordinates
         this.element_indices = [];
+        this.gridConfig = {
+            columns: 0,
+            columnRatios: [] as number[],
+            rowRatiosPerColumn: [
+            ],
+        }
         this.grid = this.build_grid();
     }
 
@@ -77,12 +81,6 @@ export class DataPlotArray {
     private build_grid(): D3Grid {
         // create a grid config based on the spread elements assinging them to their own columns
         // keep spacers between each cell
-        let config: GridConfig = {
-            columns: this.spread_elements.length,
-            columnRatios: [] as number[],
-            rowRatiosPerColumn: [
-            ],
-        }
         let spacer_start = 0;
         let spacer_end = 0;
         let elem_idx = 0;
@@ -91,20 +89,94 @@ export class DataPlotArray {
             spacer_end = interval[0];
             if (interval[0] !== 0) {
                 const spacer_width = spacer_end - spacer_start;
-                config.columnRatios.push(spacer_width / this.dimensions["width"]);
-                config.rowRatiosPerColumn.push([1]);
+                this.gridConfig.columnRatios.push(spacer_width / this.dimensions["width"]);
+                this.gridConfig.rowRatiosPerColumn.push([1]);
+                this.gridConfig.columns += 1;
                 elem_idx += 1;
             }
+            spacer_start = interval[1];
             // create element
             const element_width = interval[1] - interval[0];
-            config.columnRatios.push(element_width / this.dimensions["width"]);
-            config.rowRatiosPerColumn.push([1]);
+            this.gridConfig.columnRatios.push(element_width / this.dimensions["width"]);
+            this.gridConfig.rowRatiosPerColumn.push([1]);
+            this.gridConfig.columns += 1;
             this.element_indices.push(elem_idx);
             elem_idx += 1;
         });
+        // add final spacer
+        if (spacer_end !== this.dimensions["width"]) {
+            const spacer_width = this.dimensions["width"] - spacer_start;
+            this.gridConfig.columnRatios.push(spacer_width / this.dimensions["width"]);
+            this.gridConfig.rowRatiosPerColumn.push([1]);
+            this.gridConfig.columns += 1;
+        }
 
-        return new D3Grid(this.svg, this.dimensions.height, this.dimensions.width, config);
+        return new D3Grid(this.svg, this.dimensions.height, this.dimensions.width, this.gridConfig);
     }
-    
+
+    public plot(): void {
+        // create background grid with horizontal lines based on the max value
+        this.yScale = d3.scaleLinear()
+            .domain([0, this.maxValue])
+            .range([0,this.dimensions.height]);
+        
+        // Add a background rectangle for the grid
+        this.svg.append("rect")
+            .attr("class", "grid-background")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("width", this.dimensions.width)
+            .attr("height", this.dimensions.height)
+            .attr("fill", "#f7f7f7")
+            .attr("fill-opacity", 0.75);
+
+        // Add horizontal grid lines
+        this.svg.append("g")
+            .attr("class", "grid")
+            .attr("stroke", "rgba(0, 0, 0, 0.1)")
+            .attr("stroke-width", 1)
+            .attr("stroke-dasharray", "5,5")
+            .attr("opacity", 0.3)
+            .call(d3.axisLeft(this.yScale)
+                .ticks(5)
+                .tickSize(-this.dimensions.width)
+                .tickFormat(null));
+    }
+
+    public getElementSVG(index: number): d3.Selection<SVGSVGElement, unknown, null, undefined> | undefined {
+        const elem_idx = this.element_indices[index];
+        if (elem_idx === -1) {
+            return undefined;
+        }
+        return this.grid.getCellSvg(elem_idx,0);
+    }
+
+    public getCellDimensions(index: number): { width: number, height: number } | undefined {
+        const elem_idx = this.element_indices[index];
+        if (elem_idx === -1) {
+            return undefined;
+        }
+        return this.grid.getCellDimensions(elem_idx,0);
+    }
+
+    public getCellCoordinates(index: number): { x: number, y: number } | undefined {
+        const elem_idx = this.element_indices[index];
+        if (elem_idx === -1) {
+            return undefined;
+        }
+        return this.grid.getCellCoordinates(elem_idx,0);
+    }
+
+    public getYScale(): d3.ScaleLinear<number, number> {
+        return this.yScale;
+    }
+
+    // compute corresponding x-axis positions for the element
+    public getElementMapping(index: number): [[number,number],[number,number]] {
+        console.log(this.elements);
+        console.log(this.raw_xs);
+        console.log(this.spread_elements);
+        return [this.raw_xs[index],this.spread_elements[index]];
+    }
 }
 

@@ -1,19 +1,21 @@
 import * as d3 from "d3";
-import { Dimensions, BedData, Transcriptome } from '../../types/api';
+import { Dimensions, BedData } from '../../types/api';
 
 interface LinePlotData {
     dimensions: Dimensions;
-    transcriptome: Transcriptome;
     bedData: BedData;
     color: string;
+    xScale: d3.ScaleLinear<number, number>;
+    yScale?: d3.ScaleLinear<number, number>; // Optional yScale parameter
 }
 
 export class LinePlot {
     private svg: d3.Selection<SVGSVGElement, unknown, null, undefined>;
     private dimensions: Dimensions;
     private bedData: BedData;
-    private transcriptome: Transcriptome;
+    private xScale: d3.ScaleLinear<number, number>;
     private yScale: d3.ScaleLinear<number, number>;
+    private useProvidedYScale: boolean = false;
     private color: string;
 
     constructor(
@@ -23,10 +25,12 @@ export class LinePlot {
         this.svg = svg;
         this.dimensions = data.dimensions;
         this.bedData = data.bedData;
-        this.transcriptome = data.transcriptome;
+        this.xScale = data.xScale;
         this.color = data.color;
 
-        this.yScale = d3.scaleLinear();
+        // Use provided yScale if available, otherwise initialize a new scale
+        this.yScale = data.yScale ?? d3.scaleLinear();
+        this.useProvidedYScale = data.yScale !== undefined;
     }
 
     public get_yScale(): d3.ScaleLinear<number, number> {
@@ -34,15 +38,13 @@ export class LinePlot {
     }
 
     public plot(): void {
-        // Create the x-axis scale
-        const xScale = d3.scaleLinear()
-            .domain([0, this.transcriptome.getEnd()])
-            .range([0, this.dimensions.width]);
 
-        // Create the y-axis scale
-        this.yScale = d3.scaleLinear()
-            .domain([0, this.bedData.maxScore()])
-            .range([this.dimensions.height, 0]);
+        // Check if yScale is already set (provided externally). If not, set it based on bedData.
+        if (!this.useProvidedYScale) {
+            this.yScale = d3.scaleLinear()
+                .domain([0, this.bedData.maxScore()])
+                .range([this.dimensions.height, 0]); // Reverse range if needed for correct orientation
+        }
 
         // Add a background rectangle for the grid
         this.svg.append("rect")
@@ -71,7 +73,7 @@ export class LinePlot {
         const lineData = this.bedData.getData().flatMap(d => {
             const points = [];
             for (let pos = d.start; pos <= d.end; pos++) {
-                points.push({ x: xScale(pos), y: this.yScale(d.score) });
+                points.push({ x: this.xScale(pos), y: this.yScale(d.score) });
             }
             return points;
         });

@@ -1,20 +1,22 @@
 import * as d3 from "d3";
 
-import { Dimensions, BedData, Transcriptome } from '../../types/api';
+import { Dimensions, BedData } from '../../types/api';
 
 interface BarPlotData {
     dimensions: Dimensions;
-    transcriptome: Transcriptome;
+    xScale: d3.ScaleLinear<number, number>;
     bedData: BedData;
     color: string;
+    yScale?: d3.ScaleLinear<number, number>; // Optional yScale parameter
 }
 
 export class BarPlot {
     private svg: d3.Selection<SVGSVGElement, unknown, null, undefined>;
     private dimensions: Dimensions;
     private bedData: BedData;
-    private transcriptome: Transcriptome;
+    private xScale: d3.ScaleLinear<number, number>;
     private yScale: d3.ScaleLinear<number, number>;
+    private useProvidedYScale: boolean = false;
     private color: string;
 
     constructor(
@@ -23,10 +25,11 @@ export class BarPlot {
         this.svg = svg;
         this.dimensions = data.dimensions;
         this.bedData = data.bedData;
-        this.transcriptome = data.transcriptome;
+        this.xScale = data.xScale;
         this.color = data.color;
 
-        this.yScale = d3.scaleLinear();
+        this.yScale = data.yScale ?? d3.scaleLinear();
+        this.useProvidedYScale = data.yScale !== undefined;
     }
 
     public get_yScale(): d3.ScaleLinear<number, number> {
@@ -35,15 +38,12 @@ export class BarPlot {
 
     public plot(): void {
 
-        // Create the x-axis scale
-        const xScale = d3.scaleLinear()
-            .domain([0, this.transcriptome.getEnd()])
-            .range([0, this.dimensions.width]);
-
         // Create the y-axis scale
-        this.yScale = d3.scaleLinear()
-            .domain([0, this.bedData.maxScore()])
-            .range([0,this.dimensions.height]);
+        if (!this.useProvidedYScale) {
+            this.yScale = d3.scaleLinear()
+                .domain([0, this.bedData.maxScore()])
+                .range([0,this.dimensions.height]);
+        }
 
         // Add a background rectangle for the grid
         this.svg.append("rect")
@@ -73,9 +73,9 @@ export class BarPlot {
             .enter()
             .append("rect")
             .attr("class", "bar")
-            .attr("x", d => xScale(d.start)) // Position the bar based on start
+            .attr("x", d => this.xScale(d.start)) // Position the bar based on start
             .attr("y", d => this.yScale(d.score)) // Position the top of the bar based on score
-            .attr("width", d => Math.min(xScale(d.end) - xScale(d.start), minBarWidth)) // Width is based on start to end
+            .attr("width", d => Math.min(this.xScale(d.end) - this.xScale(d.start), minBarWidth)) // Width is based on start to end
             .attr("height", d => this.dimensions.y + this.dimensions.height - this.yScale(d.score)) // Height based on score
             .attr("fill", this.color);
     }

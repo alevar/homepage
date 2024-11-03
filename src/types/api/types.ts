@@ -41,6 +41,37 @@ export class BedData {
     public getPos(pos: number): BedLine[] {
         return this.data.filter(d => d.start <= pos && d.end >= pos);
     }
+
+    public getRange(start: number, end: number): BedData {
+        // construct a new BedData object consisting of the data within the range
+        let new_data = new BedData();
+        for (let i = 0; i < this.data.length; i++) {
+            let line = this.data[i];
+            if (line.start <= end && line.end >= start) {
+                // trim line to the range
+                let new_line = Object.assign({}, line);
+                new_line.start = Math.max(line.start, start);
+                new_line.end = Math.min(line.end, end);
+                new_data.addLine(new_line);
+            }
+        }
+        return new_data;
+    }
+
+    public explode(): BedData {
+        // explode the data into individual lines
+        let new_data = new BedData();
+        for (let i = 0; i < this.data.length; i++) {
+            let line = this.data[i];
+            for (let j = line.start; j <= line.end; j++) {
+                let new_line = Object.assign({}, line);
+                new_line.start = j;
+                new_line.end = j;
+                new_data.addLine(new_line);
+            }
+        }
+        return new_data;
+    }
 }
 
 export interface BedFile {

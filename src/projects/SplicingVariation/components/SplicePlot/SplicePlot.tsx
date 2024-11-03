@@ -1,20 +1,21 @@
 import * as d3 from 'd3';
 
-import { 
-    Transcriptome, 
-    BedFile, 
-    BedData, 
-    D3Grid, 
+import {
+    Transcriptome,
+    BedFile,
+    BedData,
+    D3Grid,
     GridConfig
 } from '../../../../types/api';
-import { 
-    ORFPlot, 
-    TranscriptomePlot, 
-    TranscriptomePlotLabels, 
+import {
+    ORFPlot,
+    TranscriptomePlot,
+    TranscriptomePlotLabels,
     BarPlot,
     LinePlot,
-    DataPlotArray
- } from '../../../../utils/plots';
+    DataPlotArray,
+    TriangleConnector
+} from '../../../../utils/plots';
 
 interface SplicePlotData {
     transcriptome: Transcriptome;
@@ -136,7 +137,7 @@ export class SplicePlot {
 
         // draw donors on overlay
         const donor_dashedLine_overlaySvg = this.grid.createOverlaySvg(0, [0, 1, 2]);
-        if ( donor_dashedLine_overlaySvg ) {
+        if (donor_dashedLine_overlaySvg) {
             const dimensions = this.grid.getCellDimensions(0, 1);
 
             for (const donor of this.transcriptome.donors()) {
@@ -154,7 +155,7 @@ export class SplicePlot {
 
         // draw acceptors on overlay
         const acceptor_dashedLine_overlaySvg = this.grid.createOverlaySvg(0, [0, 1, 2, 3, 4, 5, 6]);
-        if ( acceptor_dashedLine_overlaySvg ) {
+        if (acceptor_dashedLine_overlaySvg) {
             const dimensions = this.grid.getCellDimensions(0, 1);
 
             for (const acceptor of this.transcriptome.acceptors()) {
@@ -184,10 +185,15 @@ export class SplicePlot {
                 fontSize: this.fontSize,
             };
 
+            // Create the x-axis scale
+            const xScale = d3.scaleLinear()
+                .domain([0, this.transcriptome.getEnd()])
+                .range([0, donorFullGenomePlotDimensions.width]);
+
             const donorFullGenomePlot = new BarPlot(donorFullGenomePlotSvg, {
                 dimensions: donorFullGenomePlotDimensions,
                 bedData: this.bedFiles.donors.data,
-                transcriptome: this.transcriptome,
+                xScale: xScale,
                 color: "#F78154"
             });
             this.grid.setCellData(0, 3, donorFullGenomePlot);
@@ -207,7 +213,6 @@ export class SplicePlot {
                 fontSize: this.fontSize,
             };
 
-            
             let donor_positions: number[] = []; // gather list of donor positions
             let maxExpression = 0; // find max expression value
             for (const donor of this.transcriptome.donors()) {
@@ -218,6 +223,8 @@ export class SplicePlot {
                     }
                 });
             }
+            // sort donor positions
+            donor_positions.sort((a, b) => a - b);
             const dataPlotArray = new DataPlotArray({
                 svg: dataPlotArraySvg,
                 dimensions: dataPlotArrayDimensions,
@@ -227,6 +234,87 @@ export class SplicePlot {
                 maxValue: maxExpression,
             });
             this.grid.setCellData(0, 5, dataPlotArray);
+            dataPlotArray.plot();
+
+            // create individual plots for each donor site
+            for (let i = 0; i < donor_positions.length; i++) {
+                const donor = donor_positions[i];
+                console.log("Donor: ", donor, i);
+                // pull corresponding svg from the grid
+                const donorZoomPlotSvg = dataPlotArray.getElementSVG(i);
+                if (donorZoomPlotSvg) {
+                    const donorZoomCellDimensions = dataPlotArray.getCellDimensions(i);
+                    const donorZoomCellCoordinates = dataPlotArray.getCellCoordinates(i);
+
+                    const donorZoomPlotDimensions = {
+                        width: donorZoomCellDimensions?.width || 0,
+                        height: donorZoomCellDimensions?.height || 0,
+                        x: donorZoomCellCoordinates?.x || 0,
+                        y: donorZoomCellCoordinates?.y || 0,
+                        fontSize: this.fontSize,
+                    };
+                    console.log("Donor Zoom Plot Dimensions: ", donorZoomCellCoordinates);
+
+                    // add background color to the zoomed in plot
+                    donorZoomPlotSvg.append("rect")
+                        .attr("x", 0)
+                        .attr("y", 0)
+                        .attr("width", donorZoomPlotDimensions.width)
+                        .attr("height", donorZoomPlotDimensions.height)
+                        .attr("fill", "#F78154")
+                        .attr("fill-opacity", 0.75);
+
+                    // extract data from bed for the current donor
+                    const subBedData = this.bedFiles.donors.data.getRange(donor - 10, donor + 10);
+                    const explodedSubBedData = subBedData.explode();
+                    const xScale = d3.scaleLinear()
+                        .domain([donor-10, donor+10])
+                        .range([0, donorZoomPlotDimensions.width]);
+                    const donorZoomPlot = new LinePlot(donorZoomPlotSvg, {
+                        dimensions: donorZoomPlotDimensions,
+                        bedData: explodedSubBedData,
+                        xScale: xScale,
+                        color: "red"
+                    });
+                    donorZoomPlot.plot();
+
+                    // build connector in the overlay between zoom and original points
+                    const donorSpacerSvg = this.grid.getCellSvg(0, 4);
+                    if ( donorSpacerSvg ) {
+                        // draw a rectangle
+                        // donorSpacerSvg.append("rect")
+                        //     .attr("x", donorZoomPlotDimensions.x)
+                        //     .attr("y", donorZoomPlotDimensions.y)
+                        //     .attr("width", donorZoomPlotDimensions.width)
+                        //     .attr("height", donorZoomPlotDimensions.height)
+                        //     .attr("fill", "red");
+                        console.log("Donor Spacer Dimensions: ", donorZoomPlotDimensions);
+                        const donorSpacerDimensions = this.grid.getCellDimensions(0, 4);
+                        const donorSpacerCoordinates = this.grid.getCellCoordinates(0, 4);
+                        const donorSpacerPlotDimensions = {
+                            width: donorSpacerDimensions?.width || 0,
+                            height: donorSpacerDimensions?.height || 0,
+                            x: donorSpacerCoordinates?.x || 0,
+                            y: donorSpacerCoordinates?.y || 0,
+                            fontSize: this.fontSize,
+                        };
+
+                        const zoom_intervals: [[number,number],[number,number]] = dataPlotArray.getElementMapping(i);
+                        const donorSpacerPlot = new TriangleConnector({
+                            svg: donorSpacerSvg,
+                            dimensions: donorSpacerPlotDimensions,
+                            points: {
+                                top: (zoom_intervals[0][0] + zoom_intervals[0][1]) / 2,
+                                left: zoom_intervals[1][0],
+                                right: zoom_intervals[1][1],
+                                mid: (zoom_intervals[1][0] + zoom_intervals[1][1]) / 2
+                            },
+                            color: "red"
+                        });
+                        donorSpacerPlot.plot();
+                    }
+                }
+            }
         }
 
         this.grid.promote(0, 0);
