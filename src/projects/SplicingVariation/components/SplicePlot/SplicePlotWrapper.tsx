@@ -6,7 +6,7 @@ import { SplicePlot } from './SplicePlot';
 
 interface SplicePlotWrapperProps {
     transcriptome: Transcriptome;
-    bedFiles: BedFile[];
+    bedFiles: {donors: BedFile, acceptors: BedFile};
     width: number;
     height: number;
     fontSize: number;

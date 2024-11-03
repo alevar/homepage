@@ -66,7 +66,6 @@ export class TranscriptPlot {
             // scale exon to the dimensions of the plot
             const cds_start = (cds.getStart() / this.genome_length) * this.dimensions["width"];
             const cds_end = (cds.getEnd() / this.genome_length) * this.dimensions["width"];
-            console.log("transcript cds",this.transcript.getTranscriptId(), cds_start, cds_end);
             const cdsSvg = this.svg
                 .append('rect')
                 .attr('x', cds_start)

@@ -1,9 +1,9 @@
-import { BedFile, BedLine } from '../../types/api';
+import { BedFile, BedData, BedLine } from '../../types/api';
 
 export function parseBed(bedFileName: File): Promise<BedFile> {
     return new Promise((resolve, reject) => {
         const bedFile: BedFile = {
-            data: [],
+            data: new BedData(),
             fileName: bedFileName.name,
             status: 1,
         };
@@ -24,7 +24,7 @@ export function parseBed(bedFileName: File): Promise<BedFile> {
                             score: parseFloat(score),
                             strand: strand,
                         };
-                        bedFile.data.push(bedLine);
+                        bedFile.data.addLine(bedLine);
                     } else {
                         throw new Error(`Invalid line format: ${line}`);
                     }

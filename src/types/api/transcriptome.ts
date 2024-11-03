@@ -273,6 +273,39 @@ class Transcriptome {
     numTranscripts(): number {
         return this.transcripts.length;
     }
+
+    // iterator over splice junctions
+    *junctions(): Generator<[number, number], void, unknown> {
+        const seen_junctions = new Set<number[]>();
+        for (const transcript of this.transcripts) {
+            const exons = transcript.getExons();
+            for (let i = 0; i < exons.length - 1; i++) {
+                const junction = [exons[i].end,exons[i + 1].start];
+                if (!seen_junctions.has(junction)) {
+                    seen_junctions.add(junction);
+                    yield [junction[0], junction[1]];
+                }
+            }
+        }
+    }
+    *donors(): Generator<number, void, unknown> {
+        const seen_donors = new Set<number>();
+        for (const [donor, ] of this.junctions()) {
+            if (!seen_donors.has(donor)) {
+                seen_donors.add(donor);
+                yield donor;
+            }
+        }
+    }
+    *acceptors(): Generator<number, void, unknown> {
+        const seen_acceptors = new Set<number>();
+        for (const [, acceptor] of this.junctions()) {
+            if (!seen_acceptors.has(acceptor)) {
+                seen_acceptors.add(acceptor);
+                yield acceptor;
+            }
+        }
+    }
 }
 
 export { Transcriptome, Transcript, Exon, CDS };

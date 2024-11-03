@@ -16,8 +16,6 @@ export class ORFPlot {
         this.svg = svg;
         this.dimensions = data.dimensions;
         this.transcriptome = data.transcriptome;
-
-        console.log("orf plot",this.dimensions,this.transcriptome.getEnd());
     }
 
     public plot(): void {

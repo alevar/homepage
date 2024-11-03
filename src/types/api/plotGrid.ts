@@ -52,7 +52,6 @@ export class D3Grid {
         this.gridConfig.columnRatios.forEach((colRatio, colIndex) => {
             const columnWidth = (colRatio / totalColumnRatio) * this.width;
             const totalRowRatio = this.gridConfig.rowRatiosPerColumn[colIndex].reduce((sum, ratio) => sum + ratio, 0);
-            console.log("columns",columnWidth);
             this.cellDimensions_raw[colIndex] = [];
             this.cellDimensions[colIndex] = [];
             this.cellCoordinates[colIndex] = [];

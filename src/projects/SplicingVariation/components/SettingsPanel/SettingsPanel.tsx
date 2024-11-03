@@ -4,31 +4,31 @@ import "./SettingsPanel.css";
 import { BedFile } from "../../../../types/api";
 
 interface SettingsPanelProps {
+    gtfStatus: number;
     onGTFUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    donorsStatus: number;
+    acceptorsStatus: number;
+    onBEDUpload: (type: 'donors' | 'acceptors', event: React.ChangeEvent<HTMLInputElement>) => void;
     fontSize: number;
     onFontSizeChange: (value: number) => void;
     width: number;
     onWidthChange: (value: number) => void;
     height: number;
     onHeightChange: (value: number) => void;
-    bedFiles: BedFile[];
-    onBedFileUpload: (index: number, event: React.ChangeEvent<HTMLInputElement>) => void;
-    onAddBedFile: () => void;
-    onRemoveBedFile: (index: number) => void;
 }
 
 const SettingsPanel: React.FC<SettingsPanelProps> = ({
+    gtfStatus,
     onGTFUpload,
+    donorsStatus,
+    acceptorsStatus,
+    onBEDUpload,
     fontSize,
     onFontSizeChange,
     width,
     onWidthChange,
     height,
     onHeightChange,
-    bedFiles,
-    onBedFileUpload,
-    onAddBedFile,
-    onRemoveBedFile,
 }) => {
     return (
         <div className="settings-panel">
@@ -40,40 +40,25 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
                         <Form.Group controlId="gtfUpload">
                             <Form.Label>Pathogen GTF</Form.Label>
                             <Form.Control type="file" onChange={onGTFUpload} />
+                            {gtfStatus === -1 && (
+                                <div className="text-danger">Error parsing gtf file</div>
+                            )}
                         </Form.Group>
 
-                        {/* Dynamic BED File Uploads */}
-                        <Form.Group controlId="bedFiles">
-                            <Form.Label>
-                                <Row>
-                                    <Col md={9}>Bed Files</Col>
-                                    <Col>
-                                        <Button variant="outline-primary" size="sm" onClick={onAddBedFile}>
-                                            +
-                                        </Button>
-                                    </Col>
-                                </Row>
-                            </Form.Label>
-                            {bedFiles.map((bedFile, index) => (
-                                <div key={index} className="bed-file-upload">
-                                    <Row>
-                                        <Col md={9}>
-                                            <Form.Control
-                                                type="file"
-                                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => onBedFileUpload(index, e)}
-                                            />
-                                            {bedFile.status === -1 && (
-                                                <div className="text-danger">Error parsing file: {bedFile.fileName}</div>
-                                            )}
-                                        </Col>
-                                        <Col>
-                                            <Button variant="outline-danger" size="sm" onClick={() => onRemoveBedFile(index)}>
-                                                -
-                                            </Button>
-                                        </Col>
-                                    </Row>
-                                </div>
-                            ))}
+                        <Form.Group controlId="donorsBedUpload">
+                            <Form.Label>Donors BED</Form.Label>
+                            <Form.Control type="file" onChange={(e: React.ChangeEvent<HTMLInputElement>) => onBEDUpload("donors", e)} />
+                            {donorsStatus === -1 && (
+                                <div className="text-danger">Error parsing donors file</div>
+                            )}
+                        </Form.Group>
+
+                        <Form.Group controlId="acceptorsBedUpload">
+                            <Form.Label>acceptorsBedUpload</Form.Label>
+                            <Form.Control type="file" onChange={(e: React.ChangeEvent<HTMLInputElement>) => onBEDUpload("acceptors", e)} />
+                            {acceptorsStatus === -1 && (
+                                <div className="text-danger">Error parsing acceptors file</div>
+                            )}
                         </Form.Group>
 
                         {/* Font Size */}
