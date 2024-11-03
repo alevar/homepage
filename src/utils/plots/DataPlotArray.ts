@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 
 import { Dimensions, D3Grid, GridConfig, Interval } from '../../types/api';
-import { adjustIntervals, computeMidpoint } from '../utils';
+import { adjustIntervals } from '../utils';
 
 interface DataPlotArrayData {
     svg: d3.Selection<SVGSVGElement, unknown, null, undefined>;

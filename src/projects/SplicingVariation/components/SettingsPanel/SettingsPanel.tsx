@@ -1,7 +1,6 @@
 import React from "react";
-import { Card, Col, Row, Form, Button } from "react-bootstrap";
+import { Card, Form } from "react-bootstrap";
 import "./SettingsPanel.css";
-import { BedFile } from "../../../../types/api";
 
 interface SettingsPanelProps {
     gtfStatus: number;
