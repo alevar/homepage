@@ -1,6 +1,6 @@
 {
-  "name": "gh_page",
-  "homepage": "https://alevar.github.io/gh_page",
+  "name": "homepage",
+  "homepage": "https://alevar.github.io/homepage",
   "private": true,
   "version": "0.0.0",
   "type": "module",

@@ -22,7 +22,7 @@ const Header: React.FC = () => {
                                 <div>
                                     <img src={sparrow_logo} alt="Ales Varabyou Logo" style={{ height: '80px', marginRight: '15px' }} />
                                 </div>
-                                <h1 className="text-dark text-center" style={{ fontFamily: 'Roboto, sans-serif', fontWeight: '500' }}>Ales Varabyou</h1>
+                                <h1 className="text-dark text-center" style={{ fontFamily: 'Roboto, sans-serif', fontWeight: '500' }}></h1>
                             </Link>
                         </Col>
 
@@ -30,9 +30,6 @@ const Header: React.FC = () => {
                             <Nav className="justify-content-end">
                                 <Nav.Item>
                                     <Link to="/projects" className="nav-link">Projects</Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Link to="/hobbies" className="nav-link">Hobbies</Link>
                                 </Nav.Item>
                                 <Nav.Item>
                                     <Link to="/about" className="nav-link">About</Link>
