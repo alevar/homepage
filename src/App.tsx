@@ -5,7 +5,6 @@ import About from './components/About/About';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Projects from './components/Projects/Projects';
-import SplicingVariation from './projects/SplicingVariation/SplicingVariation';
 
 // Define a layout that includes the Footer
 const Layout: React.FC = () => (
@@ -25,7 +24,6 @@ const routes = [
       { path: '/', element: <Home /> },
       { path: '/about', element: <About /> },
       { path: '/projects', element: <Projects /> },
-      { path: '/projects/splicingVariation', element: <SplicingVariation /> },
     ]
   }
 ];
