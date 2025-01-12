@@ -23,6 +23,8 @@
       
       // Redirect to the homepage with a special flag
       window.location.href = origin + '/?redirect=true';
+      console.log('Redirecting to:', redirectUrl);
+      console.log('Original path:', pathname + search + hash);
     </script>
   </head>
   <body>
