@@ -32,7 +32,7 @@ const Projects: React.FC = () => {
       title: 'HIV-1 Variation Atlas',
       description: 'Visualizing the genetic diversity of HIV-1 genomes',
       image: HIVAtlas_Preview,
-      link: 'https://alevar.github.io/HIV_Atlas_WEB',
+      link: 'https://ccb.jhu.edu/HIV_Atlas',
     },
     {
       id: 'ORFanage',

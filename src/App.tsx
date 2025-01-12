@@ -5,6 +5,8 @@ import About from './components/About/About';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Projects from './components/Projects/Projects';
+import BlogList from './components/Blog/BlogList';
+import BlogPost from './components/Blog/BlogPost';
 
 // Define a layout that includes the Footer
 const Layout: React.FC = () => (
@@ -24,6 +26,8 @@ const routes = [
       { path: '/', element: <Home /> },
       { path: '/about', element: <About /> },
       { path: '/projects', element: <Projects /> },
+      { path: '/blog', element: <BlogList /> },
+      { path: '/blog/:postId', element: <BlogPost /> }
     ]
   }
 ];
