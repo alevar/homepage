@@ -1,0 +1,31 @@
+<!-- public/404.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+      // Get the current path and query string
+      const pathSegmentsToKeep = 1;
+      const l = window.location;
+      
+      // Reconstruct the URL parts
+      const origin = l.origin;
+      const pathname = l.pathname.split('/').slice(pathSegmentsToKeep).join('/');
+      const search = l.search;
+      const hash = l.hash;
+      
+      // Compose the redirect URL
+      const redirectUrl = origin + '/' + pathname + search + hash;
+      
+      // Store the full URL in localStorage
+      localStorage.setItem('originalPath', pathname + search + hash);
+      
+      // Redirect to the homepage with a special flag
+      window.location.href = origin + '/?redirect=true';
+    </script>
+  </head>
+  <body>
+    Redirecting...
+  </body>
+</html>
