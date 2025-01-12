@@ -4,19 +4,22 @@
     <meta charset="utf-8">
     <title>Redirecting...</title>
     <script>
-      const l = window.location;
-
-      console.log("homepage path",l.pathname.split('/homepage/').pop() || '');
-      console.log("homepage redicrect",l.origin + '/?redirect=true');
+      // Log the current location for debugging
+      console.log('homepage 404 - Current pathname:', window.location.pathname);
       
-      // Get the path after 'homepage' if it exists
-      const path = l.pathname.split('/homepage/').pop() || '';
+      // Get the full path after the domain
+      const fullPath = window.location.pathname;
       
-      // Store just the relative path without 'homepage'
-      localStorage.setItem('originalPath', path);
+      // Remove the leading slash and store the full path
+      const pathToStore = fullPath.startsWith('/') ? fullPath.slice(1) : fullPath;
+      
+      console.log('homepage 404 - Storing path:', pathToStore);
+      
+      // Store the path
+      localStorage.setItem('originalPath', pathToStore);
       
       // Redirect to the root with the redirect flag
-      window.location.replace(l.origin + '/?redirect=true');
+      window.location.replace(window.location.origin + '/?redirect=true');
     </script>
   </head>
   <body>
