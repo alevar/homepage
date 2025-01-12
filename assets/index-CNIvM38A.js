@@ -310,7 +310,7 @@ In fact, applying this algorithm to our simulated data which has over 700,000 re
 
 Having quantified all datasets with Salmon, we observe corroboration of our hypothesis, that completeness of multimapper coverage has significant effects on the quality of the RNA-seq quantification by salmon. We also demonstrate that G2T conversion produces, results comparable to the complete multimapper coverage and to the quality reported by Salmon with raw data.
 
-![NumReads_Correlation](/homepage/blog/posts/salmon_multimappers/assets/numReads_corr.png)
+![NumReads_Correlation](assets/numReads_corr.png)
 
 ## References
 
