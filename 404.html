@@ -4,25 +4,20 @@
     <meta charset="utf-8">
     <title>Redirecting...</title>
     <script>
-      // Log the current location for debugging
-      console.log('homepage 404 - Current pathname:', window.location.pathname);
-      
-      // Get the full path after the domain
-      const fullPath = window.location.pathname;
-      
-      // Remove the leading slash and store the full path
-      const pathToStore = fullPath.startsWith('/') ? fullPath.slice(1) : fullPath;
-      
-      console.log('homepage 404 - Storing path:', pathToStore);
-      
-      // Store the path
-      localStorage.setItem('originalPath', pathToStore);
-      
-      // Redirect to the root with the redirect flag
-      window.location.replace(window.location.origin + '/?redirect=true');
+      // Single Page Apps for GitHub Pages
+      // https://github.com/rafgraph/spa-github-pages
+      (function(l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
     </script>
   </head>
   <body>
-    Redirecting...
   </body>
 </html>
