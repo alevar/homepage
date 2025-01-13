@@ -299,6 +299,7 @@ Suppose the following graph, where each entry in the list is a node, with the fi
 [(0, 30, {1,2}), (31, 50, {1}), (60, 80, {1,2}),(90,100, {2})]
 
 ![G2T_Graph](assets/g2t_graph.png)
+**Figure 2:** Cartoon illustration of the indexing of GTF file for genome-to-transcript conversion.
 
 If we ask this index to find path for the following chain of intervals [[10, 30],[60, 70]], it will return transcript id set {2}, since the first interval in the query has valid match to the first node in the graph, and the second interval has a valid match to the third node, with the only edge between the two nodes being for transcript #2.
 
@@ -313,10 +314,10 @@ In fact, applying this algorithm to our simulated data which has over 700,000 re
 Having quantified all datasets with Salmon, we observe corroboration of our hypothesis, that completeness of multimapper coverage has significant effects on the quality of the RNA-seq quantification by salmon. We also demonstrate that G2T conversion produces, results comparable to the complete multimapper coverage and to the quality reported by Salmon with raw data.
 
 ![NumReads_Correlation](assets/numReads_corr.png)
-**Figure 1:** Correlation analysis of read count estimates using different multimapper reporting strategies.
+**Figure 2:** Correlation analysis of read count estimates using different multimapper reporting strategies.
 
 ![TPM_Correlation](assets/tpm_corr.png)
-**Figure 1:** Correlation analysis of TPM estimates using different multimapper reporting strategies.
+**Figure 3:** Correlation analysis of TPM estimates using different multimapper reporting strategies.
 
 ## References
 
