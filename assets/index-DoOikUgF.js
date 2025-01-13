@@ -298,7 +298,7 @@ Briefly, for every set of overlapping transcripts (let's call them bundles), the
 Suppose the following graph, where each entry in the list is a node, with the first two elements being the interval and the last being the set of transcript IDs to which this interval belongs. We can construct a graph which connects nodes according to the IDs.
 [(0, 30, {1,2}), (31, 50, {1}), (60, 80, {1,2}),(90,100, {2})]
 
-[G2T_Graph](assets/g2t_graph.png)
+![G2T_Graph](assets/g2t_graph.png)
 
 If we ask this index to find path for the following chain of intervals [[10, 30],[60, 70]], it will return transcript id set {2}, since the first interval in the query has valid match to the first node in the graph, and the second interval has a valid match to the third node, with the only edge between the two nodes being for transcript #2.
 
