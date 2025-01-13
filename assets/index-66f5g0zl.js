@@ -299,7 +299,7 @@ Suppose the following graph, where each entry in the list is a node, with the fi
 [(0, 30, {1,2}), (31, 50, {1}), (60, 80, {1,2}),(90,100, {2})]
 
 ![G2T_Graph](assets/g2t_graph.png)
-**Figure 2:** Cartoon illustration of the indexing of GTF file for genome-to-transcript conversion.
+**Figure 1:** Cartoon illustration of the indexing of GTF file for genome-to-transcript conversion.
 
 If we ask this index to find path for the following chain of intervals [[10, 30],[60, 70]], it will return transcript id set {2}, since the first interval in the query has valid match to the first node in the graph, and the second interval has a valid match to the third node, with the only edge between the two nodes being for transcript #2.
 
