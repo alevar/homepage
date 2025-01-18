@@ -403,6 +403,12 @@ In the early 90s after the collapse of the USSR, most produce with in high deman
 
 Unlike many other dumpling recipes, this one is very interesting in that the filling is exposed to the boiling liquid. As the pelmak is cooked, the water is not only enriched with the free starches released by the pasta, but also the juices seeping out from the feeling, creating and aromatic and flavorful broth.
 
+The pasta shaped used by my family was specifically lumache. For whatever reason, this shape, fairly unusual in the US was very common in Belarus when I was growing up. The shape translating to snails, looks similar with a clean opening on one side and a pinched opening on the other. This made tightly stuffing the dried pasta quite easy without the "guts" spilling out the other side. A clear indication that you stuffed it just right was when a tiny bit of the filling would squeeze out like two horns out the edges of the pinched side. If understuffed, the water would immediately get into the crevisces between the feeling tand the shell and dislodge the filling out into the water, if too much force was applied - it would be easy to break the shell.
+
+The pastas available back home were good quality but not what one would call artisinal these days. No signature marks of the bronze cutting dies being used in the fabrication of it, yet the lovingly stuffed "snails" were delicious nonetheless, and if occasionally a few fillings did get dislodged in the boiling process, it was a fun game to find them and eat them first (or last as a "reward").
+
+These days, with a wide variety of pastas available, opting for a slightly higher quality has been my general preference. The signature rough texture imparted by the bronze cutting dies, seems well suited for this specific application, binding the shell to the filling more strongly and forming a better slurry for a saucy emulsion with your favorite cheeses and spices at the end. It is a recipe which demands a good movie and a glass of wine to sit through and lovingly stuff each tiny snail. Unlike dumplings, the shapes are much smaller and tike a bit longer to make a sufficient ammount of. For that reason, it is not a frequent addition to my freezer, and I don't mind spluging a few extra dollars on higher quality pasta these days.
+
 ![1](assets/20231009_202811.jpg)
 **Figure 1:** 
 
