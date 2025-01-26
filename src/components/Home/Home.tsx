@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
+import { SiGooglescholar } from 'react-icons/si';
 
 import av_photo from '../../assets/av.photo.jpg';
 import av_cv from '../../assets/CV.AlesVarabyou.2024.pdf';
@@ -15,11 +16,29 @@ const Home: React.FC = () => {
         <Col md="auto" className="d-flex flex-column justify-content-center">
           <h1 className="mt-3">Ales Varabyou</h1>
           <div className="d-flex justify-content-center mt-3">
-            <a href="https://www.linkedin.com/in/ales-varabyou-24221886/" target="_blank" rel="noopener noreferrer" className="mx-2">
+            <a
+              href="https://www.linkedin.com/in/ales-varabyou-24221886/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-2"
+            >
               <FaLinkedin size={30} />
             </a>
-            <a href="https://github.com/alevar" target="_blank" rel="noopener noreferrer" className="mx-2">
+            <a
+              href="https://github.com/alevar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-2"
+            >
               <FaGithub size={30} />
+            </a>
+            <a
+              href="https://scholar.google.com/citations?user=XXXXXXXXX" // Replace XXXXXXXX with your Google Scholar user ID
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-2"
+            >
+              <SiGooglescholar size={30} />
             </a>
             <a href="mailto:ales.varabyou@jhu.edu" className="mx-2">
               <FaEnvelope size={30} />

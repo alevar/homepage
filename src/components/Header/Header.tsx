@@ -35,10 +35,7 @@ const Header: React.FC = () => {
                                     <Link to="/blog" className="nav-link">Blog</Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Link to="/about" className="nav-link">About</Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Link to="/contact" className="nav-link">Contact</Link>
+                                    <Link to="/cooking" className="nav-link">Recipes</Link>
                                 </Nav.Item>
                             </Nav>
                         </Col>

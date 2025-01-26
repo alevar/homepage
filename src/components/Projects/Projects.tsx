@@ -9,9 +9,28 @@ import Upset_Preview from '../../projects/UpSet/assets/UpSet_Preview.png';
 import CHESS3 from '../../projects/CHESS3/assets/CHESS3_Preview.png';
 import CHESS3_WEB from '../../projects/CHESS3_WEB/assets/CHESS3_WEB_Preview.png';
 
+// Helper component to handle both internal and external links
+const ProjectLink: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => {
+  const isExternal = to.startsWith('http') || to.startsWith('https') || to.startsWith('/') && !to.startsWith('/projects');
+
+  if (isExternal) {
+    return (
+      <a href={to} className="text-decoration-none w-100">
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <Link to={to} className="text-decoration-none w-100">
+      {children}
+    </Link>
+  );
+};
+
 const Projects: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
-
+  
   const projects = [
     {
       id: 'chimViz',
@@ -84,7 +103,7 @@ const Projects: React.FC = () => {
       <Row>
         {filteredProjects.map((project) => (
           <Col key={project.id} md={6} lg={4} className="mb-4 d-flex">
-            <Link to={project.link} className="text-decoration-none w-100">
+            <ProjectLink to={project.link}>
               <Card className="flex-fill">
                 <Card.Img variant="top" src={project.image} alt={`${project.title} Image`} />
                 <Card.Body>
@@ -92,7 +111,7 @@ const Projects: React.FC = () => {
                   <Card.Text>{project.description}</Card.Text>
                 </Card.Body>
               </Card>
-            </Link>
+            </ProjectLink>
           </Col>
         ))}
       </Row>

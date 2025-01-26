@@ -1,39 +1,41 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { createHashRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Home from './components/Home/Home';
-import About from './components/About/About';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Projects from './components/Projects/Projects';
 import BlogList from './components/Blog/BlogList';
 import BlogPost from './components/Blog/BlogPost';
+import CookingBlogList from './components/CookingBlog/CookingBlogList';
+import CookingBlogPost from './components/CookingBlog/CookingBlogPost';
 
 // Define a layout that includes the Footer
 const Layout: React.FC = () => (
   <>
     <Header />
-    <Outlet />  {/* This will render the matched child route component */}
+    <Outlet />
     <Footer />
   </>
 );
 
 // Define your routes with the Layout
 const routes = [
-  { 
-    path: '/', 
-    element: <Layout />,  // Wrap routes with the layout
+  {
+    path: '/',
+    element: <Layout />,
     children: [
       { path: '/', element: <Home /> },
-      { path: '/about', element: <About /> },
       { path: '/projects', element: <Projects /> },
       { path: '/blog', element: <BlogList /> },
-      { path: '/blog/:postId', element: <BlogPost /> }
+      { path: '/blog/:postId', element: <BlogPost /> },
+      { path: '/cooking', element: <CookingBlogList /> },
+      { path: '/cooking/:postId', element: <CookingBlogPost /> }
     ]
   }
 ];
 
-// Create the router with the basename
-const router = createBrowserRouter(routes, { basename: import.meta.env.BASE_URL });
+// Create the router using HashRouter instead of BrowserRouter
+const router = createHashRouter(routes);
 
 const App: React.FC = () => {
   return <RouterProvider router={router} />;
