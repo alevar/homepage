@@ -32,18 +32,36 @@ Eggs are frequently added as a binding agent to the foods. The albumin in the wh
 
 Lastly, the pasta itself can be vastly different. Traditionally made pastas are extruded through bornze dies under high pressure. The pasta dough itself is made with coarser semolina flour and the extrusion process creates slight flakes on the surface of the pasta. These increase the surface area of the pasta, helping it release more starch into the liquid. These starches, is what let's us create pasta sauces by emulsifying the starchy water with othe ringredients, such as guancale fats, parmesan, pepper, tomatoes, etc. Since the same starches will also be dissolving and absorbing liquids on the inside of the shells, absorbing th emeat juices and filling in the space between the two components, i expect higher concentrations of it imparted by bronze extrusion of traditional pasta to help it retain the filling as well.
 
-In this initial testing there is a total of 2**3 = 8 combinations we could be testing using these three factors. However, to reduce the number of experiments, I would like to follow a factorial design reducing it to 4 experiments assuming no 3-way interactions
+While preparing the four batches I realized that testing for the addition of flour to the filling is necessary. it was on my original list of tests, then discarded to simplify the experimental design and reduce the testing space, but I realized it is necessary nonetheless. Flour, in this case gluten-free tapioca starch/flour is an absorbent, much like the starches released by the pasta itself. However, unlike the starches released into the water by the pasta, adding flour to the filling directly serves to hopefully capture any liquid juices that may otherwise leak out into the cooking liquid. In this way retaining water by absorption should help us retain the total volume of the filling inside the pasta, and perhaps even increase it slightly due to the increase in size of the starch molecules as they bind to the liquid and absorb it not only from the meat itself but perhaps also from the cooking liquid. It is a theory though and remains to be tested.
 
-| Experiment | Kneading     | Egg | Pasta    |
-|------------|--------------|-----|----------|
-| 1          | Kneaded      | Yes | Smooth   |
-| 2          | Kneaded      | No  | Extruded |
-| 3          | Not Kneaded  | Yes | Extruded |
-| 4          | Not Kneaded  | No  | Smooth   |
+In this initial testing there is a total of 2**4 = 16 combinations we could be testing using these three factors. However, to reduce the number of experiments, I would like to reduce this down to 8 experiments as follows.
+
+Experiment	Kneading	Egg	Flour	Pasta
+1	Kneaded	Yes	With	Smooth
+2	Kneaded	Yes	Without	Extruded
+3	Kneaded	No	With	Extruded
+4	Kneaded	No	Without	Smooth
+5	Not Kneaded	Yes	With	Extruded
+6	Not Kneaded	Yes	Without	Smooth
+7	Not Kneaded	No	With	Smooth
+8	Not Kneaded	No	Without	Extruded
 
 In the future I would like to explore additional factors such as the meat (pork vs beef vs 50/50), fat content (80/20,85/15,90/10), addition of flour, addition of onion, etc. But those experiments are for the future.
 
 Understanding how all of these factors influence the structure of the meat will hopefully let me better choose and dial in the preparation for various recipes such as cepelinari, meatballs, etc
+
+
+3g white pepper
+3g black pepper
+2g garlic powder
+1.5 g MSG
+salt to taste
+
+Some ammount of kneading is inherent to mixing the spices into the meat, and can not really be avoided much. But I mixed it as little as necessary in order to incorporate the ingredients
+
+1/2 egg + 1/2 no knead. 1/2 egg + 1/2 kneed
+
+5g tapioca per 1/4 mixture
 
 
 ![1](assets/20231009_202811.jpg)
