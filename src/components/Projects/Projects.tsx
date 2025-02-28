@@ -6,7 +6,7 @@ import SplicingConservation_Preview from '../../projects/SplicingConservation/as
 import ChimViz_Preview from '../../projects/ChimViz/assets/ChimViz_Preview.png';
 import HIVAtlas_Preview from '../../projects/HIV_Atlas/assets/HIV_Atlas_Preview.png';
 import ORFanage_Preview from '../../projects/ORFanage/assets/ORFanage_Preview.png';
-import Upset_Preview from '../../projects/UpSet/assets/UpSet_Preview.png';
+import Upset_Preview from '../../projects/Upset/assets/Upset_Preview.png';
 import CHESS3 from '../../projects/CHESS3/assets/CHESS3_Preview.png';
 import CHESS3_WEB from '../../projects/CHESS3_WEB/assets/CHESS3_WEB_Preview.png';
 
