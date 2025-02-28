@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Card, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SplicingVariation_Preview from '../../projects/SplicingVariation/assets/SplicingVariation_Preview.png';
+import SplicingConservation_Preview from '../../projects/SplicingConservation/assets/SplicingConservation_Preview.png';
 import ChimViz_Preview from '../../projects/ChimViz/assets/ChimViz_Preview.png';
 import HIVAtlas_Preview from '../../projects/HIV_Atlas/assets/HIV_Atlas_Preview.png';
 import ORFanage_Preview from '../../projects/ORFanage/assets/ORFanage_Preview.png';
@@ -42,9 +43,16 @@ const Projects: React.FC = () => {
     {
       id: 'splicingVariation',
       title: 'Splicing Variation Visualization',
-      description: 'Visualizing transcriptional diversity of complexly-spliced retroviral genomes',
+      description: 'Visualizing conservation of donor and acceptor sites in spliced retroviral genomes.',
       image: SplicingVariation_Preview,
       link: 'https://alevar.github.io/SplicingVariationPlot',
+    },
+    {
+      id: 'splicingConservation',
+      title: 'Splicing Conservation Visualization',
+      description: 'Visualizing transcriptional diversity of complexly-spliced retroviral genomes',
+      image: SplicingConservation_Preview,
+      link: 'https://alevar.github.io/SplicingConservationPlot',
     },
     {
       id: 'hivAtlas',
