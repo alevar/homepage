@@ -38,7 +38,7 @@ const Projects: React.FC = () => {
       title: 'HIV-Host Chimeric Transcription Visualization',
       description: 'Visualizing diversity of transcritptional linkages between host and retroviral genomes.',
       image: ChimViz_Preview,
-      link: '/projects/ChimViz',
+      link: 'https://alevar.github.io/ChimViz',
     },
     {
       id: 'splicingVariation',
