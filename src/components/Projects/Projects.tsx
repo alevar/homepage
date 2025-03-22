@@ -73,7 +73,7 @@ const Projects: React.FC = () => {
       title: 'UpSet Plot',
       description: 'Interactive Intersections of Sets in D3 ',
       image: Upset_Preview,
-      link: 'https://alevar.github.io/UpSetPlot',
+      link: 'https://alevar.github.io/UpsetPlot',
     },
     {
       id: 'chess3_web',
