@@ -40,3 +40,44 @@ My moms recipe:
 ![10](assets/slice3.jpg)
 
 
+
+
+Now on we go to my first attempt. I do not own a mixer like what my mom uses for her recipe, and instead of mixing all ingredients at once, I opted to use my regular technique of separting the eggs, beating in some air into yolks with sugar, and separately beating the whites with sugar, then adding sourcream to the yolks, beating in more air, then combining the whites with the yolks, not being overly careful about folding since I was not trying to create a crazy airy since I will still be adding a small ammount of baking powder to the mix to help them rize some more.
+
+I had 2 eggs, and scaled the original recipe to 2/3. The ingreients were as follows:
+
+2 eggs
+133 g sugar
+1 2/3 tablespoons sour cream
+107 g flour
+2332​ teaspoon baking powder
+
+However, upon measuring the sugar, I realized 133 grams of sugar seemed a bit excessive, and I reduced it to 65 grams which seemed appropriate. Half the sugar went into the yolks and the other half into the whites.
+
+Next, I had two different kinds of apples - the traditional in many american apple recipes Granny Smith and my snack of choice the delicious Cosmic Crisp apple. while normally I wouldn't peal appeles of a receipe like this, I would also be using smaller cupcake tins for separating various experiments, which could effectively reduce the baking time, and lead to less softening for the peals. Thus for this particular batch I decided to have the apples pealed.
+
+Lastly, I was curious to adapt this recipe to the needs of a celiac audience and see how the recipe would compare. I had some gluten free mix laying around from my previous experiments. The mix was an amolgamation of leftovers from several recipes, but was likely close to the following ratio: 12 tapioca : 9 sweet rice : 7 almond : 2 coconut : 1 milk powder. Half the batter was prepared with regular all purpose flour and the other half with an equivalent ammount (53 g) of the gluten free flour.
+
+Each cupcake space was filled with ~2 slices of apple and filled 2/3 of the way with batter. It was a bit tricky to get the batter to flow into the crevices of such small space, and perhaps would be much easier had I used proper baking springform pan, but it seemed to have worked either way.
+
+Now to the final results - granny smith apples take the cake (pun intended). Gluten free batter worked extremely well! I can see how additional sugar would help, but I am still on the fence - I think increasing it by another 10-15 percent (60-65% of the original ammount) would be ideal. Also, I am used to recipes having butter and using salted butter to add the reuired salt to help bring together the flavors. In this case, since butter is not used, next time I should definitely add a pinch of salt to the batter. Lastly, I used way too little baking poswer - next time will have to use more. THe cakes definitely had air, but remained on the denser side.
+
+Now, this batch was intended as an experiment and I had my tasting with some homemade vanilla icecream. However, in the future revisions will definitely have to use some vanilla (just a splash) in the batter.
+
+Lastly, perhaps I should be more gentle folding the egg whites. Although, in my defense, the task of whipping two egg whites with half the recipe sugar into stiff peaks proved gargantuan for my little battery-powered frother which was naively employed for the task, resulting in what can only be described as not-even-soft-peaks stage. In future, proper whisking is a must-try, hard peaks and folding into batter for proper aeration. Otherwise, more baking powder should also do the trick.
+
+I doubt this is the last time I set to fill my apartment with the beloved scents of a childhood memory (perhaps I can cover my smoke alarm next time and throw in a few pieces of birch or oak for authenticity (joking...)).
+
+![11](assets/test1.silicone_greased.jpg)
+![12](assets/test1.apples.jpg)
+![13](assets/test1.ingredients.jpg)
+![14](assets/test1.yolks_sugar.jpg)
+![15](assets/test1.yolks_sugar_sourcream.jpg)
+![16](assets/test1.yolks_sugar_sourcream_combined.jpg)
+![17](assets/test1.two_batters.jpg)
+![18](assets/test1.filled.jpg)
+![19](assets/test1.baked.jpg)
+![20](assets/test1.gluten_whole.jpg)
+![21](assets/test1.gluten_cut.jpg)
+![22](assets/test1.gf_whole.jpg)
+![23](assets/test1.gf_cut.jpg)
