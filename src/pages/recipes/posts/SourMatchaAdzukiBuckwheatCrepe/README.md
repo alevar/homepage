@@ -50,7 +50,7 @@ It might be intersting to try toasting the buckwheat flour for an even eartier f
 ![Pour](assets/crepe1.jpg)
 **Pour:** Pour enough batter onto dry non-stick skillet to cover the bottom with a thin film. The batter should immediately form bubbles which will pop shortly. If no bubbles - try increasing the heat.
 
-![Flip](assets/finished.jpg)
+![Flip](assets/crepe2.jpg)
 **Flip:** No need to wait long. The crepes are very thin and don't need more that 30 second after spreading. You will notice the edges comng off the sides indicating they are ready for the flip.
 
 ## Sour Matcha Whip Recipe
