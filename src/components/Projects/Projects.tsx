@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import SplicingVariation_Preview from '../../projects/SplicingVariation/assets/SplicingVariation_Preview.png';
 import SplicingConservation_Preview from '../../projects/SplicingConservation/assets/SplicingConservation_Preview.png';
 import ChimViz_Preview from '../../projects/ChimViz/assets/ChimViz_Preview.png';
+import GenomeViewer_Preview from '../../projects/GenomeViewer/assets/GenomeViewer_Preview.png';
 import HIVAtlas_Preview from '../../projects/HIV_Atlas/assets/HIV_Atlas_Preview.png';
 import ORFanage_Preview from '../../projects/ORFanage/assets/ORFanage_Preview.png';
 import Upset_Preview from '../../projects/Upset/assets/Upset_Preview.png';
@@ -60,6 +61,13 @@ const Projects: React.FC = () => {
       description: 'Visualizing the genetic diversity of HIV-1 genomes',
       image: HIVAtlas_Preview,
       link: 'https://ccb.jhu.edu/HIV_Atlas',
+    },
+    {
+      id: 'genomeViewer',
+      title: 'Very naive genome viewer',
+      description: 'Getting still images of segments of genome and transcriptome',
+      image: GenomeViewer_Preview,
+      link: 'https://alevar.github.io/GenomeViewer',
     },
     {
       id: 'ORFanage',
