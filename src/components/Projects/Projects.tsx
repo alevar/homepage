@@ -10,6 +10,8 @@ import ORFanage_Preview from '../../projects/ORFanage/assets/ORFanage_Preview.pn
 import Upset_Preview from '../../projects/Upset/assets/Upset_Preview.png';
 import CHESS3 from '../../projects/CHESS3/assets/CHESS3_Preview.png';
 import CHESS3_WEB from '../../projects/CHESS3_WEB/assets/CHESS3_WEB_Preview.png';
+import SpliceGraph from '../../projects/SpliceGraph/assets/SpliceGraph_Preview.png';
+import TranslocAccountability from '../../projects/TranslocAccountability/assets/TranslocAccountability_Preview.gif';
 
 // Helper component to handle both internal and external links
 const ProjectLink: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => {
@@ -84,11 +86,25 @@ const Projects: React.FC = () => {
       link: 'https://alevar.github.io/UpsetPlot',
     },
     {
+      id: 'spliceGraph',
+      title: 'Splice Graph',
+      description: 'Visualizing splicing events in RNA-Seq data',
+      image: SpliceGraph,
+      link: 'https://alevar.github.io/SpliceGraph',
+    },
+    {
       id: 'chess3_web',
       title: 'CHESS3 Web',
       description: 'Web Interface for CHESS3',
       image: CHESS3_WEB,
       link: 'https://alevar.github.io/CHESS3_WEB',
+    },
+    {
+      id: 'translocAccountability',
+      title: 'Transloc Accountability',
+      description: 'Live-tracking busses missing schedule and keeping transportation teams informed with annoying slack messages',
+      image: TranslocAccountability,
+      link: 'https://github.com/alevar/translacc',
     },
     {
       id: 'chess3',
