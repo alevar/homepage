@@ -732,7 +732,28 @@ Now let’s take a typical choux pastry recipe (courtesy of [King Arthur Baking]
 
 Hmmm... this doesn’t bode well. We need 40% dry matter from flour, but we only get ~20% from potatoes, which are ~80% water. So what can we do?  
 
-I propose that we shred potatoes directly into the melted butter, and as the mixture cooks, excess water
+I propose that we shred potatoes directly into the melted butter, and as the mixture cooks, excess water will gradually evaporate. This process will, of course, take longer than cooking flour into the water-and-butter mixture in traditional choux pastry — but hey, we aren’t here to make life easier; we’re here to do some wanky food science!
+
+The rest of the setup is quite simple.  
+
+Since the water is evaporating and the dry mass of potato remains the same, we’ll go from there. For 100 g of potato, we get ~76 g water and 24 g dry mass. So we need to scale the rest of the ingredients to 24 g of dry mass. This gives us:
+
+| Ingredient | Scaled Amount |
+|-------------|----------------|
+| Water | 36.3 g (reducing from ~76 g in the potato) |
+| Butter | 18.1 g |
+| Eggs | 0.64 (about two-thirds of an egg) |
+
+My potato happens to weigh ~400 g (peeled). So everything is quadrupled, giving:
+
+| Ingredient | Amount |
+|-------------|---------|
+| Butter | 72.4 g |
+| Eggs | ~2.5 |
+
+I guess we’ll have to be precise on this one for the sake of the experiment.  
+
+Let’s try it now — what could go wrong on the first attempt? (A lot, but I’m doing it to entertain myself, hopefully gain an ounce of new food understanding, and maybe stumble upon that one-in-a-hundred crazy idea that actually works out amazingly.)
 `,hL=`---
 id: pwincess_cake
 title: Princess Cake
