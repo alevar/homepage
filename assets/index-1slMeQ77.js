@@ -744,12 +744,13 @@ Since the water is evaporating and the dry mass of potato remains the same, weâ€
 | Butter | 18.1 g |
 | Eggs | 0.64 (about two-thirds of an egg) |
 
-My potato happens to weigh ~400 g (peeled). So everything is quadrupled, giving:
+My potato happens to weigh ~400 g (peeled), but that would scale to ~2.5 eggs, so let's trim potato for some soup and scale to 2 whole eggs instead, giving:
 
 | Ingredient | Amount |
 |-------------|---------|
-| Butter | 72.4 g |
-| Eggs | ~2.5 |
+| Potato | 312 g |
+| Butter | 56.6 g |
+| Eggs | ~2 |
 
 I guess weâ€™ll have to be precise on this one for the sake of the experiment.  
 
