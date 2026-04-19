@@ -21,6 +21,9 @@ pnpm-debug.log*
 .vscode/
 .idea/
 .DS_Store
+**/.DS_Store
+._*
+**/*._*
 gh-pages/
 *.tsbuildinfo
 coverage/

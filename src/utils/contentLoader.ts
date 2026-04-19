@@ -1,156 +1,131 @@
-// src/utils/contentLoader.ts
-import { Post, PostMetadata, PostExtendedMetadata } from '../types/Post';
+import { Post } from '../types/Post';
 
-// Predefined content types with their static glob patterns
-export const CONTENT_TYPES = {
+const CONTENT_GLOBS = {
   BLOG: {
-    contentGlob: '../pages/blog/**/README.md',
-    assetGlob: '../pages/blog/**/assets/*'
+    content: import.meta.glob('../pages/blog/**/README.md', { eager: true, as: 'raw' }),
+    assets: import.meta.glob('../pages/blog/**/assets/*', { eager: true })
   },
   COOKING: {
-    contentGlob: '../pages/recipes/**/README.md',
-    assetGlob: '../pages/recipes/**/assets/*'
+    content: import.meta.glob('../pages/recipes/**/README.md', { eager: true, as: 'raw' }),
+    assets: import.meta.glob('../pages/recipes/**/assets/*', { eager: true })
   }
 } as const;
 
-type ContentType = keyof typeof CONTENT_TYPES;
-
-interface ContentLoaderConfig {
-  type: ContentType;
-}
-
-// Internal FrontMatter type that maps to our Post interfaces
-type FrontMatter = PostMetadata & PostExtendedMetadata;
+type ContentType = keyof typeof CONTENT_GLOBS;
 
 class ContentLoader {
   private contentFiles: Record<string, string>;
   private assetFiles: Record<string, any>;
-  private config: ContentLoaderConfig;
 
-  constructor(config: ContentLoaderConfig) {
-    this.config = config;
-
-    // Use static glob patterns directly
-    if (this.config.type === 'BLOG') {
-      this.contentFiles = import.meta.glob('../pages/blog/**/README.md', {
-        eager: true,
-        as: 'raw'
-      });
-
-      this.assetFiles = import.meta.glob('../pages/blog/**/assets/*', {
-        eager: true
-      });
-    } else if (this.config.type === 'COOKING') {
-      this.contentFiles = import.meta.glob('../pages/recipes/**/README.md', {
-        eager: true,
-        as: 'raw'
-      });
-
-      this.assetFiles = import.meta.glob('../pages/recipes/**/assets/*', {
-        eager: true
-      });
-    } else {
-      throw new Error(`Unsupported content type: ${this.config.type}`);
-    }
+  constructor(type: ContentType) {
+    this.contentFiles = CONTENT_GLOBS[type].content;
+    this.assetFiles = CONTENT_GLOBS[type].assets;
   }
 
-  // Remaining methods unchanged
-  private parseFrontMatter(content: string): { frontMatter: FrontMatter; content: string } {
-    const frontMatterRegex = /---\s*([\s\S]*?)\s*---\s*([\s\S]*)/;
-    const matches = content.match(frontMatterRegex);
-    
-    if (!matches) {
-      throw new Error('Invalid front matter format');
-    }
+  private parseFrontMatter(content: string) {
+    const match = content.match(/---\s*([\s\S]*?)\s*---\s*([\s\S]*)/);
+    if (!match) throw new Error('Invalid front matter format');
 
-    const [, frontMatterYaml, markdown] = matches;
-    const frontMatter: Partial<FrontMatter> = {};
+    const [, yaml, markdown] = match;
+    const frontMatter: Record<string, any> = {};
 
-    frontMatterYaml.split('\n').forEach(line => {
+    yaml.split('\n').forEach(line => {
       const [key, ...valueParts] = line.split(':');
-      if (key && valueParts.length > 0) {
-        const value = valueParts.join(':').trim();
-        
-        if (key.trim() === 'tags') {
-          frontMatter.tags = value
-            .replace(/[\[\]]/g, '')
-            .split(',')
-            .map(tag => tag.trim())
-            .filter(tag => tag.length > 0);
-        } else {
-          (frontMatter as any)[key.trim()] = value;
-        }
+      if (!key || !valueParts.length) return;
+
+      const value = valueParts.join(':').trim();
+      const trimmedKey = key.trim();
+
+      if (trimmedKey === 'tags') {
+        frontMatter.tags = value
+          .replace(/[\[\]]/g, '')
+          .split(',')
+          .map(t => t.trim())
+          .filter(t => t);
+      } else if (trimmedKey === 'draft') {
+        // Parse draft as boolean
+        frontMatter.draft = value.toLowerCase() === 'true';
+      } else {
+        frontMatter[trimmedKey] = value;
       }
     });
 
-    // Validate required fields
     if (!frontMatter.title || !frontMatter.date || !frontMatter.summary) {
-      throw new Error('Missing required front matter fields');
+      throw new Error('Missing required fields: title, date, or summary');
     }
 
-    return {
-      frontMatter: frontMatter as FrontMatter,
-      content: markdown.trim()
-    };
+    return { frontMatter, content: markdown.trim() };
   }
 
-  private getIdFromPath(filepath: string): string {
-    const pathSegments = filepath.split('/');
-    return pathSegments[pathSegments.length - 2];
+  private getIdFromPath(path: string): string {
+    const segments = path.split('/');
+    return segments[segments.length - 2];
   }
 
-  private getAssetsForContent(contentId: string): Record<string, string> {
+  private getAssets(contentId: string): Record<string, string> {
     const assets: Record<string, string> = {};
     
-    for (const [filepath, module] of Object.entries(this.assetFiles)) {
-      if (filepath.includes(`/${contentId}/`)) {
-        const filename = filepath.split('/').pop() || '';
-        // @ts-ignore: module has default export
-        assets[filename] = module.default;
+    for (const [path, module] of Object.entries(this.assetFiles)) {
+      if (path.includes(`/${contentId}/`)) {
+        const filename = path.split('/').pop() || '';
+        assets[filename] = (module as any).default;
       }
     }
 
     return assets;
   }
 
-  private processContent(rawContent: string, assets: Record<string, string>): string {
-    let processedContent = rawContent;
+  private getPreviewImage(assets: Record<string, string>): string | undefined {
+    // Look for preview.png first, then preview.svg, then any file starting with preview
+    const previewFiles = ['preview.png', 'preview.jpg', 'preview.svg'];
+    
+    for (const filename of previewFiles) {
+      if (assets[filename]) {
+        return assets[filename];
+      }
+    }
+    
+    // Look for any file starting with "preview"
+    const previewKey = Object.keys(assets).find(key => key.toLowerCase().startsWith('preview'));
+    return previewKey ? assets[previewKey] : undefined;
+  }
+
+  private processContent(content: string, assets: Record<string, string>): string {
+    let processed = content;
     Object.entries(assets).forEach(([filename, url]) => {
-      processedContent = processedContent
+      processed = processed
         .replace(`./assets/${filename}`, url)
         .replace(`assets/${filename}`, url);
     });
-    return processedContent;
+    return processed;
   }
 
   public getAllContent(): Post[] {
-    const items: Post[] = [];
+    const posts: Post[] = [];
 
-    for (const [filepath, content] of Object.entries(this.contentFiles)) {
+    for (const [path, content] of Object.entries(this.contentFiles)) {
       try {
         const { frontMatter, content: rawContent } = this.parseFrontMatter(content);
-        const contentId = this.getIdFromPath(filepath);
-        const assets = this.getAssetsForContent(contentId);
+        const id = this.getIdFromPath(path);
+        const assets = this.getAssets(id);
+        const previewImage = this.getPreviewImage(assets);
 
-        items.push({
+        posts.push({
           ...frontMatter,
-          id: contentId,
-          content: this.processContent(rawContent, assets)
-        });
+          id,
+          content: this.processContent(rawContent, assets),
+          previewImage
+        } as Post);
       } catch (error) {
-        console.error(`Error parsing content ${filepath}:`, error);
+        console.error(`Error parsing ${path}:`, error);
       }
     }
 
-    return items.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }
 
   public getContentById(id: string): Post | undefined {
-    return this.getAllContent().find(item => item.id === id);
-  }
-
-  public getContentByTag(tag: string): Post[] {
-    return this.getAllContent().filter(post => post.tags?.includes(tag));
+    return this.getAllContent().find(post => post.id === id);
   }
 
   public getPublishedContent(): Post[] {
@@ -159,20 +134,7 @@ class ContentLoader {
       !post.draft && new Date(post.date) <= now
     );
   }
-
-  public getContentByAuthor(author: string): Post[] {
-    return this.getAllContent().filter(post => post.author === author);
-  }
 }
 
-// Factory functions for creating specific loaders
-export const createBlogLoader = () => new ContentLoader({
-  type: 'BLOG'
-});
-
-export const createCookingBlogLoader = () => new ContentLoader({
-  type: 'COOKING'
-});
-
-export type { ContentLoaderConfig, ContentType };
-export { ContentLoader };
+export const createBlogLoader = () => new ContentLoader('BLOG');
+export const createCookingBlogLoader = () => new ContentLoader('COOKING');

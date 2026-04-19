@@ -1,0 +1,26 @@
+---
+id: moka_sampling
+title: Moka Pot Fractionation
+date: 2025-10-15
+summary: Sampling fractions of the moka pot cofee to find the ideal "stopping" point
+---
+
+While I do enjoy all types of coffee brewing for the unique flavors they produce and rituals that surround them, my favorite, by a very long margin is and has been for quite some time a humble moka pot. For me, the fascination with moka pots bgan a while ago. 
+
+Back home in Belarus and when I was studying in the Netherlads, I first began drinking coffee, our prepartion was very simple, what I now know to be termed cowboy coffe: you take pre-ground coffee, submerge it in boiling water, let sit a few minutes, stir to precipitate the grounds and enjoy the beverage, which by then has cooled sufficiently to not scold your mouth into oblivion.
+
+Eventually, I made my way to Luther College in the US and where for the next few years I lived out of a dorm room with barely any ammenities. My coffee ritual with disrupted by constant running between classes, extracurriculars and other activities and replaced by energy drinks and drip coffee amply supplied by the caffeteria.
+
+During my junior year, however, me an my roommate found an abandoned Keurig machine with a refillable basket. It took a bit of cleaning inside out, and the machine was ready to fuel our ever-longer study nights (CS and bio and robotics for me and econ and polisci for him all provided plenty of work to keep us busy at the time).
+
+When leaving college for Baltimore, I decided to not sell the machine but leave it in the free supplies for the next generation, and upon my humble arrival in Baltimore, living in a cozy yet closet-sized efficiency without a kitchen, I had to improvise once again. Coffee continued to be one of the pillars of my mornings and was one of the first feelings of independence for me. Buying coffee, with my humble financial beginnings, always seemed like a very luxurious experience, deserving of a special holliday. So when I started earning paychecks as a research assistant at JHU, I made it a point to treat myself to a cup'o'joe from the nearby 7-eleven which seemed like an unbelievabale treat several times a week. It is funny, because we actually had a coffee machine at the lab which I did use throughout the day, but the experience of buying a cup of scolding coffee as I walk to the lab building past all of the doctors and researchers in the lab coats hurridly stepping in each and every directions, sirens of ambulances rushing and the general sense of happenings - people I looke up to and dreamed of becoming, finally all would envelop myself in this peace of mind that for once in my life I have stepped into a space I was excited to be in, independent, young, full of ambition and excitement.
+
+Still, the 7-eleven coffee, however pleasant in it's own way,  did not satisfy my need for that coffee ritual amidst my micro-efficiency (I am not joiking, in the days since I have been to homes where small closets are larger than my entire first apartment at 500USD a month with all utilities included no less!). Don't get me wrong, I loved that space for all the same reasons I loved that cup'o'joe I would get in the mornings on the way to work. And to be honest, It might not even take that much persuation to let me live in there again, assuming my old setup and that I'm allowed to fix up a few things myself. Anyways I digress.
+
+Still, this little gap in my ritualistic need, prompted an investment of one of my first paychecks into a coffee machine, and I wanted something to get excited about. I got lucky indeed, when one day scouring craigslist i found a barely used delonghi espresso machine. The machine was lacking a few non-essential parts and one of the pressurized portafilters was a bit clogged, but overall it was a solid machine and sold to me for a grand total of 15USD - what a steal! Equipped witht he machine and some accessories from amazon, it became the staple of my morning routine, and coincidentally, my primary means of boiling water in general in my hyper-efficient space.
+
+Quickly however, the excitement of the 7-eleven coffee dwindled a bit and my espresso maker was seeing progressively less use over time, as I started Ph.D., mornings became more hectic, getting to lab after classes in the middle of the day no longer carried that same sense of "new day - new horizons" type of feeling, replacing it slowly with trying to snap my mind form classwork to daily research and the people around looked a bit more tired during that dreary midday slump.
+
+I needed a new coffee ritual, and here came the moka pot. One of the postdocs from our lab was leaving and gave away some of his belongings - I ended up getting his Sennheiser HD58X headphones (which I still use daily if noone's around) and his 3cup baby moka pot. I have never used those devices before, althougn in retrospect, my parents did have one of the stainless steel version growing up - but at the time, I knew nothing about cofee and so it's miracles were lost on my baby mind.
+
+The little contraption I inherited from my labmate tickled my engineering mind though. It was elegant, the design unchanged ever since it's original inception. Easy and cheap to manufacture and with a promise to deliver a great cup reminiscent of 

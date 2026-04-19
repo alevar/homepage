@@ -1,0 +1,98 @@
+.recipe-header {
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+}
+
+.recipe-title {
+  font-family: 'Georgia', serif;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #1a1a1a;
+}
+
+.recipe-meta {
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.recipe-content {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.8;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.recipe-content h2, .recipe-content h3 {
+  font-family: 'Georgia', serif;
+  color: #1a1a1a;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.recipe-content ul {
+  background-color: #fafafa;
+  padding: 2rem 2rem 2rem 3rem;
+  border-radius: 8px;
+  border-left: 4px solid #f5cf6d;
+}
+
+.recipe-content li {
+  margin-bottom: 0.75rem;
+}
+
+.diff-ins {
+  background-color: #e6ffed;
+  text-decoration: none;
+  padding: 2px 0;
+}
+
+.diff-del {
+  background-color: #ffeef0;
+  text-decoration: line-through;
+  color: #b31d28;
+  padding: 2px 0;
+}
+
+.commit-timeline {
+  background: white;
+  border: 1px solid #eaecef;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.commit-item {
+  padding: 0.75rem;
+  border-bottom: 1px solid #eaecef;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.commit-item:last-child {
+  border-bottom: none;
+}
+.commit-item:hover {
+  background-color: #f6f8fa;
+}
+.commit-item.active {
+  background-color: #f1f8ff;
+  border-left: 3px solid #0366d6;
+}
+
+.utterances-container {
+  margin-top: 5rem;
+  border-top: 1px solid #eaecef;
+  padding-top: 3rem;
+}
+
+.recipe-img {
+  cursor: pointer;
+  transition: transform 0.2s;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+.recipe-img:hover {
+  transform: scale(1.02);
+}

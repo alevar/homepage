@@ -12,17 +12,17 @@ const Footer: React.FC = () => {
             <footer className="footer mt-auto py-3">
                 <Container>
                     <Row className="align-items-center">
-                        <Col md={1}>
-                            <Nav.Link href="https://engineering.jhu.edu/" className="d-flex align-items-center">
-                                <img src={jhu_logo} alt="JHU Logo" style={{ height: '40px', marginRight: '15px' }} />
+                        <Col md={2} className="d-flex justify-content-start">
+                            <Nav.Link href="https://engineering.jhu.edu/">
+                                <img src={jhu_logo} alt="JHU Logo" style={{ height: '40px' }} />
                             </Nav.Link>
                         </Col>
 
                         <Col md={2}>
-                            <a className="text-muted">CCB &copy; {new Date().getFullYear()}</a>
+                            <span className="text-muted">CCB &copy; {new Date().getFullYear()}</span>
                         </Col>
 
-                        <Col md={4} className="text-center">
+                        <Col md={4} className="d-flex justify-content-center">
                             <ul className="nav">
                                 <li className="nav-item">
                                     <Link to="/" className="nav-link px-2 text-body-secondary">Home</Link>
@@ -34,22 +34,17 @@ const Footer: React.FC = () => {
                                     <Link to="/about" className="nav-link px-2 text-body-secondary">About</Link>
                                 </li>
                             </ul>
-
                         </Col>
 
-                        <Col md={3}>
-                            <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-of-service">Terms of Service</a>
-                        </Col>
-
-                        <Col md={1}>
-                            <Nav.Link href="https://www.hopkinsmedicine.org/som/" className="d-flex align-items-center">
-                                <img src={som_logo} alt="SOM Logo" style={{ height: '40px', marginRight: '15px' }} />
+                        <Col md={2} className="d-flex justify-content-end">
+                            <Nav.Link href="https://www.hopkinsmedicine.org/som/">
+                                <img src={som_logo} alt="SOM Logo" style={{ height: '40px' }} />
                             </Nav.Link>
                         </Col>
 
-                        <Col md={1} className="text-end">
-                            <Nav.Link href="https://publichealth.jhu.edu/" className="d-flex align-items-center">
-                                <img src={sph_logo} alt="SPH Logo" style={{ height: '40px', marginRight: '15px' }} />
+                        <Col md={2} className="d-flex justify-content-end">
+                            <Nav.Link href="https://publichealth.jhu.edu/">
+                                <img src={sph_logo} alt="SPH Logo" style={{ height: '40px' }} />
                             </Nav.Link>
                         </Col>
                     </Row>

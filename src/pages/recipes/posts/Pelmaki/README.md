@@ -2,7 +2,7 @@
 id: pelmaki
 title: Pelmaki
 date: 2024-01-13
-summary: Parents creativity has no bou
+summary: Parent's creativity has no bounds
 ---
 
 Pasta variants have evoleved across the globe as affordable, easily preservable nutritionally-dense foods. The process of making pasta lends itself to stuffing either the finished or intermediate products with various fillings as means of further expediting cooking of nutritionally complete meals. From raviolli to dumplings, stuffed canneloni, cheburek, etc we see varietals of this technique present all over the world.
@@ -18,7 +18,7 @@ The pastas available back home were good quality but not what one would call art
 These days, with a wide variety of pastas available, opting for a slightly higher quality has been my general preference. The signature rough texture imparted by the bronze cutting dies, seems well suited for this specific application, binding the shell to the filling more strongly and forming a better slurry for a saucy emulsion with your favorite cheeses and spices at the end. It is a recipe which demands a good movie and a glass of wine to sit through and lovingly stuff each tiny snail. Unlike dumplings, the shapes are much smaller and tike a bit longer to make a sufficient ammount of. For that reason, it is not a frequent addition to my freezer, and I don't mind spluging a few extra dollars on higher quality pasta these days.
 
 
-WHile it may be fun to discover dislodged meat nuggets in the broth and have some empty shells floating around full of saucy goodness, I would like to be able to control the extent to which meat can hold on to the pipe lining. I begin with a few hypothesis for what might be causing the dislodging behavior. With exception of a failed recipe in which the filling or the shells disintegrate alltogether, there are two things which may cause the separation of the two components: it is either a) the filling shrinking or b) the shell expanding. Both of these factors would cause separation of the components. I would like to find a way to control the extend to which either we control the loss or the binding of the two components with each other.
+While it may be fun to discover dislodged meat nuggets in the broth and have some empty shells floating around full of saucy goodness, I would like to be able to control the extent to which meat can hold on to the pipe lining. I begin with a few hypothesis for what might be causing the dislodging behavior. With exception of a failed recipe in which the filling or the shells disintegrate alltogether, there are two things which may cause the separation of the two components: it is either a) the filling shrinking or b) the shell expanding. Both of these factors would cause separation of the components. I would like to find a way to control the extend to which either we control the loss or the binding of the two components with each other.
 
 Shrinkage of the filling would primarily be caused by the loss of mass either via fat rendering or water leakage.
 

@@ -7,4 +7,5 @@ export default defineConfig({
   build: {
     outDir: 'dist',
   },
+  publicDir: 'public', // This is default, but ensure it's set
 });

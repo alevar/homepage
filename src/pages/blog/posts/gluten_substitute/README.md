@@ -6,7 +6,7 @@ summary: Using the power of molecular biology, biophysics and genomics to search
 ---
 
 # Intro
-Gluten serves a fundamental role in the culinary world - helping maintain the airy and strong structure in our favorite doughy goods. Alas, not everyone is graced to enjoy this common delicacy. That begs the question: is it possible to manually construct the same protein matrix using a different polymer with properties similar to those of gluten? Afterall, we can beat albumin in eggwhites or aquafaba into stable meringues, use gelatin to set our favorite wobbly deserts. many other stabilizing culinary techniques have been created.
+Gluten serves a fundamental role in the culinary world - helping maintain the airy and strong structure in our favorite doughy goods. Alas, not everyone is graced to enjoy this common delicacy. That begs the question: is it possible to manually construct the same protein matrix using a different polymer with properties similar to those of gluten? Afterall, we can beat albumin in eggwhites or aquafaba into stable meringues, use gelatin to set our favorite wobbly deserts.
 
 Similarly, gluten itself can quite easily be isolated out of the wheat flour by washing the dough to retain plain seitan.
 
