@@ -77,6 +77,33 @@ const Projects: React.FC = () => {
       category: 'Automation Tools'
     },
     {
+      id: 'sparrowBuilds',
+      title: 'Sparrow Builds - Physical Fabrication & CAD',
+      description: 'A dedicated showcase of custom woodworking, 3D printing, parametric CAD design (FreeCAD), and physical fabrication projects.',
+      image: 'https://raw.githubusercontent.com/alevar/SparrowBuilds/main/projects/guitarStand/20260701_014430.jpg',
+      link: 'https://alevar.github.io/SparrowBuilds',
+      tags: ['Woodworking', '3D Printing', 'FreeCAD', 'Laser Cutting', 'Maker'],
+      category: 'Physical Fabrication'
+    },
+    {
+      id: 'guitarStand',
+      title: 'Modular Ergonomic Guitar Stand',
+      description: 'Custom engineered modular instrument stand designed in FreeCAD (stand.v4.FCStd) featuring ergonomic padded contours for acoustic and electric guitars.',
+      image: 'https://raw.githubusercontent.com/alevar/SparrowBuilds/main/projects/guitarStand/20260701_014430.jpg',
+      link: 'https://alevar.github.io/SparrowBuilds#/projects/guitarStand',
+      tags: ['3D Printing', 'FreeCAD', 'Guitar Accessories', 'CAD Design'],
+      category: 'Physical Fabrication'
+    },
+    {
+      id: 'coasters',
+      title: 'Laser Cut Geometric Coasters',
+      description: 'Multi-layer geometric coasters designed with SVG vector graphics, precision laser cut and finished with protective wood oil.',
+      image: 'https://raw.githubusercontent.com/alevar/SparrowBuilds/main/projects/coasters/20250327_114859.jpg',
+      link: 'https://alevar.github.io/SparrowBuilds#/projects/coasters',
+      tags: ['Woodworking', 'Laser Cutting', 'SVG Design', 'Coasters'],
+      category: 'Physical Fabrication'
+    },
+    {
       id: 'chess3',
       title: 'CHESS3 - Comprehensive Human Expressed Sequence Tag Search',
       description: 'First-of-a-kind reference-grade and most comprehensive evidence-based human gene catalogue.',

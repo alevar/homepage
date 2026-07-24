@@ -32,6 +32,9 @@ const Header: React.FC = () => {
                                     <Link to="/projects" className="nav-link">Projects</Link>
                                 </Nav.Item>
                                 <Nav.Item>
+                                    <a href="https://alevar.github.io/SparrowBuilds" className="nav-link">Builds</a>
+                                </Nav.Item>
+                                <Nav.Item>
                                     <Link to="/blog" className="nav-link">Blog</Link>
                                 </Nav.Item>
                                 <Nav.Item>
